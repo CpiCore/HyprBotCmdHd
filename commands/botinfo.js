@@ -45,8 +45,8 @@ exports.run = (client, message, args) => {
                 inline: true
             },
             {
-                name: "Bot link",
-                value: "Invite link: https://discord.com/api/oauth2/authorize?client_id=745904881725866024&permissions=8&scope=bot",
+                name: 'Bot link', `[Kattints ide]${https://discord.com/api/oauth2/authorize?client_id=745904881725866024&permissions=8&scope=bot}`,
+                value: ,
                 inline: true
             }
         )
