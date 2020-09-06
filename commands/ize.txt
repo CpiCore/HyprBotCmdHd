@@ -1,0 +1,12 @@
+var img = await canvacord.rank({
+        username: user.username,
+        discrim: user.discriminator,
+        status: user.presence.status,
+        currentXP: xp.toString(),
+        neededXP: xpNeeded.toString(),
+        rank,
+        level,
+        avatarUrl: user.displayAvatarUrl({ format: "png" }),
+        color: "white"
+    })
+    return message.channel.send(new Discord.MessageAttachment(img, "rank.png"))

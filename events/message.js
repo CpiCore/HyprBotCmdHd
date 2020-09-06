@@ -1,4 +1,4 @@
-const prefix = "!" 
+const prefix = "!"
 const Discord = require("discord.js")
 const bot = new Discord.Client({ disableEveryone: true });
 const fs = require("fs");
@@ -19,20 +19,45 @@ const { error } = require("console");
 var inv = new db.table("Inventory")
 const queue = new Map()
 var warn = new db.table("Warns")
-const ddif1 = require ('return-deep-diff')
+const ddif1 = require('return-deep-diff')
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 
- exports.run = async(bot, message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix)) {
-    
- let messageArray = message.content.split(" "),
-     cmd = messageArray[0],
-     args = messageArray.slice(1),
-     commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.aliases.get(cmd.slice(prefix.length));
-  
-if(!commandfile) return;    
-    commandfile.run(bot, message, args);
-  }}
+bot.on("message", async message =>{
+ xp(message)
+})
+exports.run = async (bot, message, user, username) => {
+    if (message.author.bot) return;
+    if (message.content.startsWith(prefix)) {
+
+        let messageArray = message.content.split(" "),
+            cmd = messageArray[0],
+            args = messageArray.slice(1),
+            commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.aliases.get(cmd.slice(prefix.length));
+
+        if (!commandfile) return;
+        commandfile.run(bot, message, args);
+    }
+
+    function xp(message) {
+        if (message.content.startsWith("!")) return;
+        else {
+            const randomNumber = Math.floor(Math.random() * 10) + 15
+            db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomNumber)
+            db.add(`guild_${message.guild.id}_xptotal_${message.author.id}`, randomNumber)
+            var level = db.fetch(`guild_${message.guild.id}_level_${message.author.id}`)
+            var xp = db.fetch(`guild_${message.author.id}_xp_${message.author.id}`)
+            var xpNeeded = Math.floor(level) * (400)
+            if (xp > xpNeeded) {
+                var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
+                db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded)
+                const embed = new Discord.MessageEmbed()
+                    .setTitle(`${message.author} szintet lépett! ⬆ ‼`)
+                    .setDescription(`Jelenlegi szinted: **${newLevel}**`)
+                    .setColor("GREEN")
+                return message.channel.send(embed)
+            }
+        }
+    }
+}
