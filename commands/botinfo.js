@@ -27,16 +27,11 @@ exports.run = (client, message, args) => {
     const embed = new Discord.MessageEmbed()
         .setThumbnail()
         .setColor('RANDOM')
-        .setTitle(`${bot.user.username} bot statisztikái`)
+        .setTitle(`HyprBot bot statisztikái`)
         .addFields(
             {
                 name: "Bot Tulaj: ",
                 value: "@F4||1ng ☄#2370",
-                inline: true
-            },
-            {
-                name: "Bot létrehozási dátuma",
-                value: bot.user.createdAt,
                 inline: true
             },
             {
@@ -46,7 +41,7 @@ exports.run = (client, message, args) => {
             },
             {
                 name: "Bot neve",
-                value: bot.user.username,
+                value: 'HyprBot',
                 inline: true
             },
             {
