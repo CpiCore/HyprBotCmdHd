@@ -25,6 +25,7 @@ bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 
+
 bot.on("ready", async () => {
     let statuses = [`👩‍💻${bot.guilds.cache.size} Szerveren fut👩‍💻`, `🟢Online a szervereden🟢`, `Version 1️⃣.6️⃣`, `🇭🇺 Egy magyar bot! 🇭🇺`, `Linkért írj privátban ! :)`, `${bot.users.cache.size} felhasználó használja a botot!`];
     setInterval(function () {
