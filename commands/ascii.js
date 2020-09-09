@@ -24,8 +24,22 @@ bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 let timeout = 86400000;
 exports.run = async(client, message, args) => {
-  message.channel.send("Megtaláltad az easter egget :D 🥚")
-  message.react("✅")
+    if (!args.join(" ")) {
+        message.delete();
+        const embed = new Discord.MessageEmbed()
+            .setTitle("Hiba")
+            .setDescription(`**${message.author.username}** nem adtad meg mit akarsz **kiirni**!`)
+            .setColor("RED")
+            .setFooter(`${bot.user.username}`)
+            .setTimestamp()
+        return message.channel.send(embed).then(msg => msg.delete(5000));
+    }
+    figlet(args.join(" "), function (err, data) {
+        if (err) return console.dir(err);
+        message.channel.send(data, {
+            code: 'md'
+        });
+    });
 }
 exports.config = {
   aliases: ["pong", "pingpong"]

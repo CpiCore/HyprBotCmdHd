@@ -24,8 +24,19 @@ bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 let timeout = 86400000;
 exports.run = async(client, message, args) => {
-  message.channel.send("Megtaláltad az easter egget :D 🥚")
-  message.react("✅")
+    if (!args.join(" ")) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle("Hiba")
+            .setDescription(`**${message.author.username}** nem adtad meg mit mondjon a  **bot**!`)
+            .setColor("RED")
+            .setFooter(`HyprBot`)
+            .setTimestamp()
+        return message.channel.send(embed)
+    }
+    else {
+        message.delete();
+        message.channel.send(args.join(" "))
+    }
 }
 exports.config = {
   aliases: ["pong", "pingpong"]
