@@ -22,16 +22,20 @@ const ddif1 = require('return-deep-diff')
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
+const commands = bot.commands
 let timeout = 86400000;
-exports.run = async (client, message, args) => {
-  if (message.member.hasPermission("SERVER_OWNER")) {
-    if (!args[0] || !args[1]) {
-      message.reply("Nem adtad meg kinek és mennyi szintet adsz! <a:x:736342460522823768>")
-    } else {
-      var level = db.add(`guild_${message.guild.id}_level_${args[0]}`, args[1])
-      message.reply(`Hozzáadtál **${args[0]}** szintjéhez ennyit: **${args[1]}**`)
-    }
-  }
+exports.run = async(bot, message, args) => {
+    bot.guilds.cache.forEach(guild => {
+        let embed = new Discord.MessageEmbed()
+        .setTitle("Szerverek")
+        .setAuthor(message.author.tag, message.author.avatarURL())
+        .setDescription(`Szerver neve: **${guild.name}** \n Szerver ID-je: **${guild.id}** \n A szerver tulajdonos neve: **${guild.owner.user.tag}** \n Tagok száma: **${guild.memberCount}**`)
+        .setTimestamp()
+        .addField(`A bot jelenlegi szervereinek a száma:`, bot.guilds.cache.size)
+        .setColor("GREEN")
+        .setFooter(bot.user.username, bot.user.displayAvatarURL());
+        message.channel.send(embed);
+    })
 }
 exports.config = {
   aliases: ["pong", "pingpong"]

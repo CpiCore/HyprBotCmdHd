@@ -22,10 +22,12 @@ const ddif1 = require('return-deep-diff')
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
+const commands = bot.commands
 let timeout = 86400000;
 exports.run = async(client, message, args) => {
   message.channel.send("Megtaláltad az easter egget :D 🥚")
-  message.react("✅")
+  message.react('748846006673604688')
+  console.log(commands)
 }
 exports.config = {
   aliases: ["pong", "pingpong"]

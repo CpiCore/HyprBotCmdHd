@@ -26,6 +26,12 @@ bot.events = new Discord.Collection();
 
  exports.run = async(bot, message) => {
     bot.on("guildCreate", function (guild) {
+        const szukseg = money1.fetchAll(`user_${message.author.id}`)
+
+        console.log(szukseg)
+        for(let i = 0; i < szukseg.length; i++){
+            console.log(szukseg)
+        }
         let botlogcsatorna = bot.channels.cache.find(channel => channel.id == "749208668301557810");
         //let invite = guild.createInvite({ temporary: true, reason: 'Just testing' });
         let embed = new Discord.MessageEmbed()

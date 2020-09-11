@@ -1,39 +1,20 @@
-if(command === "randomdrop") {
-    let replies = ["Trials",
-        "Skyhook",
-        "Countdown",
-        "TheTrainYard",
-        "LavaFissure",
-        "Staging",
-        "ThermalStation",
-        "TheTree",
-        "LaunchSite",
-        "TheDome",
-        "LavaCity",
-        "TheGeyser",
-        "Overhook",
-        "Refinery",
-        "SurveyCamp",
-        "TheEpicenter",
-        "Haverster",
-        "SortineFactory",
-        "FragmentWest",
-        "FragmentEast",
-        "Capital City"]    
-    let result = Math.floor((Math.random() * replies.length));
-    let randomembed = new Discord.MessageEmbed()
-        .setTitle("Randomdrop")
-        .addField("Ha a Kings Canon-t szeretnéd, nyomd meg az 1️⃣ emojit!  \n\nHa a Másikat szeretnéd akkor nyomd meg a 2️⃣ emojit!")
-        // msgEmbed.react('1️⃣')
-        //message.ReactionAdd('2️⃣')
-        message.channel.send(randomembed).then (m =>
-        {
-            m.react('1️⃣')
-            m.react('2️⃣')
-            message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '1️⃣' || reaction.emoji.name == '2️⃣'),
-            { max: 1, time: 30000 }).then(collected => {
-  
-                if (collected.first().emoji.name == '1️⃣') {
-                    return message.channel.send (replies[result])  ;    
-               
-            }})}
+function xp(message) {
+        if (message.content.startsWith(prefixes)) return;
+        else {
+            const randomNumber = Math.floor(Math.random() * 10) + 15
+            db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomNumber)
+            db.add(`guild_${message.guild.id}_xptotal_${message.author.id}`, randomNumber)
+            var level = db.get(`guild_${message.guild.id}_level_${message.author.id}`)
+            var xp = db.get(`guild_${message.author.id}_xp_${message.author.id}`)
+            var xpNeeded = Math.floor(level) * (400)
+            if (xp > xpNeeded) {
+                var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
+                db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded)
+                const embed = new Discord.MessageEmbed()
+                    .setTitle(`${message.author} szintet lépett! ⬆ ‼`)
+                    .setDescription(`Jelenlegi szinted: **${newLevel}**`)
+                    .setColor("GREEN")
+                return message.channel.send(embed)
+            }
+        }
+    }

@@ -1,4 +1,4 @@
-const botconfig = require("./botconfig.json");
+const botconfig = require('./events/botconfig.json')
 const tokenfile = require("./tokenfile.json");
 const Discord = require("discord.js")
 const bot = new Discord.Client({ disableEveryone: true });
@@ -55,30 +55,4 @@ fs.readdir('./events/', (err, files) => {
         bot.on(eventName, (...args) => eventFunc.run(bot, ...args));
     });
 });
-
-bot.on("message", async message => {
-    if (message.author.bot) return
-    xp(message)
-})
-
-function xp(message) {
-    if (message.content.startsWith("!")) return;
-    else {
-        const randomNumber = Math.floor(Math.random() * 10) + 15
-        db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomNumber)
-        db.add(`guild_${message.guild.id}_xptotal_${message.author.id}`, randomNumber)
-        var level = db.get(`guild_${message.guild.id}_level_${message.author.id}`)
-        var xp = db.get(`guild_${message.author.id}_xp_${message.author.id}`)
-        var xpNeeded = level * 200
-        if (xpNeeded < xp) {
-            var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
-            db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded)
-            const embed = new Discord.MessageEmbed()
-                .setTitle(`${message.author} szintet lépett! ⬆ ‼`)
-                .setDescription(`Jelenlegi szinted: **${newLevel}**`)
-                .setColor("GREEN")
-            return message.channel.send(embed)
-        }
-    }
-}
 bot.login(tokenfile.token)

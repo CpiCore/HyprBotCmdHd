@@ -19,6 +19,7 @@ var inv = new db.table("Inventory")
 const queue = new Map()
 var warn = new db.table("Warns")
 const ddif1 = require('return-deep-diff')
+const rankcanvas = require('canvacord')
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
@@ -28,14 +29,14 @@ exports.run = async (client, message, args) => {
     var level = db.get(`guild_${message.guild.id}_level_${user.id}`) || 0
     level = level.toString()
     let xp = db.get(`guild_${message.guild.id}_xp_${user.id}`) || 0
-    var xpNeeded = level * 500 + 500
+    var xpNeeded = level * 400 + 400
     let every = db
         .all()
         .filter(i => i.ID.startsWith(`guild_${message.guild.id}_xptotal_`))
         .sort((a, b) => b.data - a.data)
-    var rank = db.get(`guild_${message.guild.id}_xptotal_${user.id}`) + 1
+    var rank = every.map(x => x.ID).indexOf(db.get(`guild_${message.guild.id}_xptotal_${user.id}`) + 1)
     rank = rank.toString()
-    /*var img = await canvas10.rank({
+    var img = await rankcanvas.rank({
         username: user.username,
         discrim: user.discriminator,
         status: user.presence.status,
@@ -43,10 +44,10 @@ exports.run = async (client, message, args) => {
         neededXP: xpNeeded.toString(),
         rank,
         level,
-        avatarUrl: user.displayAvatarUrl({ format: "png" }),
+        avatarURL: user.avatarURL({format: 'jpg'}),
         color: "white"
     })
-    return message.channel.send(new Discord.MessageAttachment(img, "rank.png"))*/
+    return message.channel.send(new Discord.MessageAttachment(img, "rank.png"))
     message.channel.send(level)
 }
 exports.config = {
