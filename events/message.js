@@ -25,6 +25,7 @@ bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 const rank = new db.table('ranks')
+const prszo = "prefix"
 
 
 exports.run = async (bot, message, user, username) => {

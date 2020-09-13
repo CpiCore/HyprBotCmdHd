@@ -24,6 +24,7 @@ const ddif1 = require('return-deep-diff')
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
+const prszo = "prefixh"
 
 
 bot.on("ready", async () => {
@@ -55,4 +56,15 @@ fs.readdir('./events/', (err, files) => {
         bot.on(eventName, (...args) => eventFunc.run(bot, ...args));
     });
 });
+
+bot.on('message',async message => {
+    if(message.content.includes(prszo)){
+        const prefixe = db.get(`prefix_${message.guild.id}`)
+        const embed = new Discord.MessageEmbed()
+        .setTitle("A szerveren lévő prefix:")
+        .setDescription(`**${prefixe}**`)
+        .setColor("GREEN")
+        message.channel.send(embed)
+    }
+})
 bot.login(tokenfile.token)

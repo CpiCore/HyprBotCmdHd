@@ -1,0 +1,182 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font-family: sans-serif;
+}
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar
+{
+    background-image: linear-gradient(to left, #eb7302, #ff3300);
+    padding: 0 !important;
+    outline-color: #e00b04;
+    outline-style: outset;
+}
+.navbar-brand img
+{
+    height: 50px;
+    width: 70px;
+    padding-left: 20px;
+}
+.navbar-nav li
+{
+    padding: 0 10px;
+}
+.navbar-nav li a
+{
+    color: #fff !important;
+    font-weight: 600;
+}
+.fa-bars
+{
+    color: #fff;
+    font-size: 30px !important;
+}
+.navbar-toggler
+{
+    outline: none !important;
+}
+.dropdown-menu
+{
+    background-color: #6e6c6b !important;
+}
+#banner
+{
+    background-image: linear-gradient(to left, #eb7302, #ff3300);
+    color: #fff;
+    padding-top: 5%;
+}
+.title
+{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+}
+.img-index
+{
+    padding-bottom: 5cm;
+}
+.titlef
+{
+    font-size: 55;
+}
+.ascii
+{
+    font-size: 40;
+}
+.say
+{
+    font-size: 40;
+}
+.kerdes
+{
+    font-size: 40;
+}
+.ping
+{
+    font-size: 40;
+}
+.img-indexf
+{
+    width: auto;
+}
+.titlem
+{
+    font-size: 30;
+}
+.bam
+{
+    font-size: 20;
+}
+.mute
+{
+    font-size: 20;
+}
+.unmute
+{
+    font-size: 20;
+}
+.ub
+{
+    font-size: 20;
+}
+.kick
+{
+    font-size: 20;
+}
+.warn
+{
+    font-size: 20;
+}
+.setwarn
+{
+    font-size: 20;
+}
+.warns
+{
+    font-size: 20;
+}
+.egyenleg
+{
+    font-size: 30;
+}
+.titlee
+{
+    font-size: 35;
+}
+.lotto
+{
+    font-size: 30;
+}
+.rulette
+{
+    font-size: 30;
+}
+.gamble
+{
+    font-size: 30;
+}
+.upgrade
+{
+    font-size: 15;
+}
+.titlea
+{
+    font-size: 40;
+}
+.prefix
+{
+    font-size: 30;
+}
+.prefixh
+{
+    font-size: 30;
+}
+.setwelcomec
+{
+    font-size: 30;
+}
+.setleftc
+{
+    font-size: 30;
+}
+.serverinfo
+{
+    font-size: 30;
+}
+.botinfo
+{
+    font-size: 30;
+}
+.szerverek
+{
+    font-size: 20;
+}
