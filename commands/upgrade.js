@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
           const embed = new Discord.MessageEmbed()
             .setTitle(`Sikeresen dupláztad ezt a pénzt: ${args[1]} , **${message.author.username}**`)
             .setDescription(`**${message.author.username}** ennyi pénzt szereztél: **${win2}**`)
-            .setColor("RED")
+            .setColor("GREEN")
             .setFooter(`HyprBot`)
             .setTimestamp()
           return message.channel.send(embed)

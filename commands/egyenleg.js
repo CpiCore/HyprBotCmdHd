@@ -26,7 +26,7 @@ let timeout = 86400000;
 exports.run = async(client, message, args) => {
     const money = money1.get(`user_${message.author.id}`)
     const embed = new Discord.MessageEmbed()
-        .setTitle(`Jelenlegi egyvenleged - ${message.author.username}`)
+        .setTitle(`Jelenlegi egyenleged - ${message.author.username}`)
         .setDescription(`**${money}**`)
         .setFooter()
         .setTimestamp()

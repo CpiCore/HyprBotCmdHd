@@ -44,7 +44,7 @@ exports.run = async (bot, message, user, username) => {
         commandfile.run(bot, message, args);
 
         if (prefixes == null) {
-            db.set(`prefix_${message.guild.id}`, "!")
+            prefix = "!"
         }else{
             prefix.prefixes;
         }
@@ -70,5 +70,10 @@ exports.run = async (bot, message, user, username) => {
     }
 bot.on("message", async message => {
     xp(message)
+    if (prefixes == null) {
+        db.set(`prefix_${message.guild.id}`, "!")
+    }else{
+        prefix.prefixes;
+    }
 })
 }
