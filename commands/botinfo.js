@@ -36,7 +36,7 @@ exports.run = (client, message, args) => {
             },
             {
                 name: "Felhasználók akik a botot használják: ",
-                value: `${bot.users.cache.size} használja`,
+                value: `${bot.users.cache.size}`,
                 inline: true
             },
             {
