@@ -24,10 +24,10 @@ bot.aliases = new Discord.Collection();
 bot.events = new Discord.Collection();
 const commands = bot.commands
 let timeout = 86400000;
+const attach = new Attachment('https://cdn.discordapp.com/emojis/751813175401250836.gif?v=1')
 exports.run = async(client, message, args) => {
-  message.channel.send("Megtaláltad az easter egget :D 🥚")
+  message.channel.send("Megtaláltad az easter egget :D 🥚", attach)
   message.react('748846006673604688')
-  message.channel.send(https://cdn.discordapp.com/emojis/751813175401250836.gif?v=1)
   console.log(commands)
 }
 exports.config = {
