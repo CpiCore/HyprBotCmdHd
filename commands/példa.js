@@ -27,6 +27,7 @@ let timeout = 86400000;
 exports.run = async(client, message, args) => {
   message.channel.send("Megtaláltad az easter egget :D 🥚")
   message.react('748846006673604688')
+  message.channel.send(https://cdn.discordapp.com/emojis/751813175401250836.gif?v=1)
   console.log(commands)
 }
 exports.config = {
